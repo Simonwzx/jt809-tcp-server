@@ -15,30 +15,29 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author choice
  * @description: 初始化逻辑处理类
  * @date 2018-12-27 12:27
- *
  */
 @Component
 public class CommonHandlerFactory implements ApplicationContextAware {
-    private static Map<Integer, CommonHandler> handlers = new ConcurrentHashMap<>();
+    private static final Map<Integer, CommonHandler> HANDLERS = new ConcurrentHashMap<>();
     private static ApplicationContext context;
 
 
     @PostConstruct
     public void serverHandlerFactory() {
-        handlers.put(JT809DataTypeConstants.UP_CONNECT_REQ,context.getBean(UpConnectHandler.class));
-        handlers.put(JT809DataTypeConstants.UP_EXG_MSG,context.getBean(UpExgMsgHandler.class));
-        handlers.put(JT809DataTypeConstants.UP_LINKTEST_REQ,context.getBean(UpLinkTestHandler.class));
+        HANDLERS.put(JT809DataTypeConstants.UP_CONNECT_REQ, context.getBean(UpConnectHandler.class));
+        HANDLERS.put(JT809DataTypeConstants.UP_EXG_MSG, context.getBean(UpExgMsgHandler.class));
+        HANDLERS.put(JT809DataTypeConstants.UP_LINKTEST_REQ, context.getBean(UpLinkTestHandler.class));
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        if(null == context){
+        if (null == context) {
             context = applicationContext;
         }
     }
 
-    public CommonHandler getHandler(Integer flag){
-        return handlers.get(flag);
+    public CommonHandler getHandler(Integer flag) {
+        return HANDLERS.get(flag);
     }
 
 

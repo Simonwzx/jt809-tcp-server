@@ -10,6 +10,8 @@ import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @author choice
  * 主链路登陆逻辑处理
@@ -23,6 +25,8 @@ public class UpConnectHandler implements CommonHandler {
 //    KafkaTemplate<String,Object> kafkaTemplate;
 //    @Autowired
 //    TcpChannelMsgManage tcpChannelMsgManage;
+
+    private ConcurrentHashMap<String, String> loginMap = new ConcurrentHashMap<>();
 
     @Override
     public void handler(ChannelHandlerContext ctx, Message msg) {

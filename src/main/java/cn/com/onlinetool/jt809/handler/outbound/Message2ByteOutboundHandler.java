@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.SocketAddress;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author choice
@@ -19,7 +20,6 @@ import java.net.SocketAddress;
 @Service
 @ChannelHandler.Sharable
 public class Message2ByteOutboundHandler extends ChannelOutboundHandlerAdapter {
-
     @Autowired
     Message2ByteEncoder message2ByteEncoder;
 
